@@ -85,3 +85,95 @@ def profile(request):
 
     return render(request, 'profile.html', context)
 
+def search_results(request):
+    if 'photos' in request.GET and request.GET["photos"]:
+        search_term = request.GET.get("photos")
+        searched_profiles = Profile.search_profile(search_term)
+        message = f"{search_term}"
+
+        return render(request, 'search.html',{"message":message,"photos": searched_profiles})
+
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'search.html',{"message":message})
+
+
+@login_required(login_url='login/')
+def like(request):
+    user=request.user
+    if request.method=='POST':
+        image_id=request.POST.get('image_id')
+        image_obj=Image.objects.get(id=image_id)
+
+        if user in image_obj.liked.all():
+            image_obj.liked.remove(user)
+        else:
+            image_obj.liked.add(user)
+        like,created=Like.objects.get_or_create(user=user,image_id=image_id)
+        if not created:
+            if like.value=='Like':
+                like.value='Unlike'
+            else:
+                like.value='Like'
+        like.save()
+        return redirect('welcome')
+
+def uploadImage(request):
+    if request.method == "POST":
+
+        form=ImageForm(data=request.POST,files=request.FILES)
+        if form.is_valid():
+            form.save()
+            obj=form.instance
+        return redirect('welcome')
+    else:
+        form=ImageForm()
+        img=Image.objects.all()
+    return render(request,"index.html",{"form":form})
+
+def viewPhoto(request,pk=int):
+    photo=Image.objects.get(id=pk)
+    return render(request,'photo.html',{'photo':photo})
+
+def follow(request,username):
+    obj=Following.objects.all()
+    main_user=request.user
+    to_follow=User.objects.get(username=username)
+
+    following=Following.objects.filter(user=main_user,followed=to_follow)
+    is_following=True  if following else False
+
+    if is_following:
+        Following.unfollow(main_user,to_follow)
+        is_following=False
+    else:
+        Following.follow(main_user,to_follow)
+        is_following=False
+    resp={'following':is_following}
+    response=json.dump(resp)
+   
+    return render(request,'profile.html',response,context_type='application/json',username=username)
+
+def post_detail(request, slug):
+    
+    post = get_object_or_404(Image, slug=slug)
+    comments = post.comments.filter(active=True)
+    new_comment = None
+    # Comment posted
+    if request.method == 'POST':
+        comment_form = CommentForm(data=request.POST)
+        if comment_form.is_valid():
+
+            # Create Comment object but don't save to database yet
+            new_comment = comment_form.save(commit=False)
+            # Assign the current post to the comment
+            new_comment.post = post
+            # Save the comment to the database
+            new_comment.save()
+    else:
+        comment_form = CommentForm()
+
+    return render(request, 'comment.html', {'post': post,
+                                           'comments': comments,
+                                           'new_comment': new_comment,
+                                           'comment_form': comment_form})
