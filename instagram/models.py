@@ -48,7 +48,7 @@ class Image(models.Model):
     def num_likes(self):
         return self.likes.all().count()
 
-    LIKE_CHOICES = (
+LIKE_CHOICES = (
         ('Like','Like'),
         ('Unlike','Unlike')
     )
