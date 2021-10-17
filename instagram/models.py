@@ -29,4 +29,30 @@ class Image(models.Model):
     comments = models.TextField(max_length=80)
     profile = models.ForeignKey(Profile,on_delete=models.CASCADE,null=True)
     author = models.ForeignKey(User,on_delete=models.CASCADE,related_name='author',null=True)
-    
+
+
+    def __str__(self):
+        return self.name
+
+    def save_image(self):
+        self.save()
+
+    def delete_image(self):
+        self.delete()
+
+    @classmethod
+    def update_caption(self):
+        caption = Image.objects.get_or_create()
+        return caption
+    @property
+    def num_likes(self):
+        return self.likes.all().count()
+
+
+
+
+
+
+
+
+
