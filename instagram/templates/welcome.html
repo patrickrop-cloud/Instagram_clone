@@ -1,0 +1,58 @@
+{% extends 'base.html'%}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        {% for photo in photos %}
+        <div class=" col-sm-8 col-md-8 col-lg-8">
+            <div class="card my-2 ">
+                <div class="card-header bg-transparent border-light">
+                           
+                    <p class="ml-4"> {{user}}</p>
+                </div>
+                <a style="text-decoration: none;" href="{%url 'photo' photo.id %}"
+                    class="btn btn-outline-light btn-sm m-1">
+
+                    <img class="image-thumbail" src="{{ photo.image.url }}" width="700px" height="500px"
+                        alt="Card image cap"></a> 
+                <form action="{% url 'like'%}" method="POST">
+                    {% csrf_token%}
+                    <input type="hidden" name="image_id" value="{{photo.id}}">
+                    {% if user not in photo.liked.all%}
+                    <div class="col-md-2">
+                        <button class="btn btn-outline-success  ">like</button>
+
+                    </div>
+                    {% else %}
+                    <div class="col-md-2">
+                        <button class="btn btn-outline-danger  "> unlike</button>
+
+                    </div>
+                    {% endif %}
+                </form>
+                <p class="cap ml-4">{{photo.caption}}</p>
+
+                <div class="col-md-2">
+                    Comments:
+                    <b>{{user.username}}</b> {{photo.comments}}
+
+
+                </div>
+                <div class="card-body">
+                    <small></small>
+                </div>
+                <div class="card-footer bg-transparent border-secondary">
+
+                    <a href="">Add comment...</a> 
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <h2>No photos ....</h2>
+        {% endfor %}
+    </div>
+</div>
+
+</div>
+{%endblock%}
