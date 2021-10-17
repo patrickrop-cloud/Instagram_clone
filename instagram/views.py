@@ -2,6 +2,7 @@ from django.core.checks import messages
 from django.shortcuts import redirect, render
 from django import forms
 
+
 # Create your views here.
 def registeruser(request):
     title = 'Register - instagram'
