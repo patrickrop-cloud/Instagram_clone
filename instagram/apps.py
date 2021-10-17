@@ -5,5 +5,5 @@ class InstagramConfig(AppConfig):
     name = 'instagram'
 
 
-    # def ready(self):
-    #     import instagram.signals
+    def ready(self):
+        import instagram.signals

@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'instagram',
     'bootstrap3',
     'bootstrap4',
+    'crispy_forms',
     'cloudinary',
 ]
 MIDDLEWARE = [
