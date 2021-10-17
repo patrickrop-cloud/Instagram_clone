@@ -53,6 +53,46 @@ class Image(models.Model):
         ('Unlike','Unlike')
     )
 
+class Like(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    Image = models.ForeignKey(Image, on_delete=models.CASCADE)
+    value = models.CharField(choices=LIKE_CHOICES,default='Like',max_length=10)
+
+    def __str__(self):
+        return self.image
+
+
+class Following(models.Model):
+    user=models.OneToOneField(User,null=True,on_delete=models.CASCADE)
+    followed=models.OneToOneField(User,null=True,related_name='followed',on_delete=models.CASCADE)
+
+    @classmethod
+    def follow(cls,user,another_account):
+        obj=Following.objects.all()
+        obj.create=cls.objects.get_or_create(user=user)
+        obj.followed.add(another_account)
+        print('follow')
+
+    @classmethod
+    def unfollowed(cls,user,another_account):
+        obj=Following.objects.all()
+        obj.create=cls.objects.get_or_create(user=user)
+        obj.followed.remove(another_account)
+        print('unfollowed')
+
+class Comment(models.Model):
+    post = models.ForeignKey(Image,on_delete=models.CASCADE,related_name='comment')
+    name = models.CharField(max_length=80)
+    email = models.EmailField()
+    body = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
+    active = models.BooleanField(default=False)
+
+    class Meta:
+        ordering = ['created_on']
+
+    def __str__(self):
+        return 'Comment {} by {}'.format(self.body, self.name)
 
 
 
