@@ -114,3 +114,5 @@ cloudinary.config(
   api_secret = "oR6EHcXk_0s73dNfIaGMgBq0i18",
 )
 # Activate Django-Heroku.
+
+django_heroku.settings(locals())
