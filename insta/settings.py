@@ -21,7 +21,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '_5$3c5+w_&b3lk=6o6*$lka@0*h-zy5b5+4&1ipiw!ltmmb1xe'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '0.0.0.0'
+    'the-yogify.herokuapp.com',
+    '127.0.0.1'
+]
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
