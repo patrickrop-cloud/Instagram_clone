@@ -54,6 +54,12 @@ class ProfileTestclass(TestCase):
         self.profile.delete_profile()
         self.assertTrue(len(profile_record)==0)
 
+    #Update method
+    def test_update_profile(self):
+        new_profile=Profile.update_profile()
+        expected_profile = f'{new_profile}'
+        self.assertTrue(expected_profile,'new_image')
+
 
 
     
