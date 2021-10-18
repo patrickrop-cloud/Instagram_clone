@@ -8,9 +8,9 @@
       <!-- Links -->
      
       <ul class="nav justify-content-start  mr-5">
-        <a class="navbar-brand" href="{% url 'welcome'%}">Instagram</a>
+        <!-- <a class="navbar-brand" href="{% url 'welcome'%}">Instagram</a> -->
         <li class="active"><a href="{% url 'welcome'%}">Home <span class="sr-only">(current)</span></a></li>
-        <li><a href="{% url 'uploadImage'%}">Upload image</a></li>
+        <li><a href="{% url 'uploadImage'%}">Upload Image</a></li>
 
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
 
@@ -22,13 +22,9 @@
                 <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
               </div>
             </div>
-
           </form>
-
         </div>
-
         <ul class="nav justify-content-end  ml-5">
-
           <li><a href="{% url 'profile'%}"> Profile </a></li>
           <li>
             <a href="{% url 'loginpage'%}">Logout</a>
@@ -39,12 +35,8 @@
       <li>
           <a class='btn btn-default' href="/login">Login</a>
       </li>
-
       {% endif %}
     </div>
-
   </div>
-
-
 </nav>
 {%endblock%}

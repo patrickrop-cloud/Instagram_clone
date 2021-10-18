@@ -2,15 +2,11 @@
 {% block content %}
 <div class="container">
     <form action="." method="post" enctype="multipart/form-data">
-
         {% csrf_token %}
         {{form.as_p}}
-
         <button type="submit" class="btn btn-lg btn-success">Upload</button>
     </form>
 </div>
-
-
 {% if obj %}
 <h3>Succesfully uploaded : {{img_obj.caption}}</h3>
 <img src="{{ obj.image.url}}" alt="image" width="200px" class="img-thumbnail">
@@ -23,7 +19,7 @@
     {% endif %}
     <div class="col-lg-4 col-md-4 col-12">
         <div class="text-center mt-2">
-            <img src="{{x.image.url}}" height="70%" width="70%" class="img-thumbnail" alt="...">
+            <img src="{{x.image.url}}" height="70%" width="70%" class="img-thumbnail" alt="none">
             <h2 class="text-center">{{x.caption}}</h2>
         </div>
     </div>

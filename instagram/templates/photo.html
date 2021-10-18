@@ -3,16 +3,13 @@
 <div class="container">
     <div class="row ">
         <div class="col-md-5 " style="background-color: rgb(239, 246, 248);">
-            <a class="btn btn-light my-3" href="{% url 'welcome'%}">Return Home</a>
+            <a class="btn btn-light badge-dark my-3" href="{% url 'welcome'%}">Go Back</a>
             <div class="my-4" style="height: auto;">
                 <img style="max-width: 100%; min-height: 60%;" src="{{photo.image.url}}" alt="image-cap">
                 <p>
-
                     {{photo.caption}}
-
                 </p>
             </div>
-
         </div>
     </div>
 </div>
