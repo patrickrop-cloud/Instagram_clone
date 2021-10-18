@@ -8,8 +8,9 @@
         <div class=" col-sm-8 col-md-8 col-lg-8">
             <div class="card my-2 ">
                 <div class="card-header bg-transparent border-light">
-                           
-                    <p class="ml-4"> {{user}}</p>
+                    <div class="col-md-2">
+                        <p class="btn btn-outline-primary ml-4"> {{user}}</p>
+                    </div>
                 </div>
                 <a style="text-decoration: none;" href="{%url 'photo' photo.id %}"
                     class="btn btn-outline-light btn-sm m-1">
@@ -21,7 +22,7 @@
                     <input type="hidden" name="image_id" value="{{photo.id}}">
                     {% if user not in photo.liked.all%}
                     <div class="col-md-2">
-                        <button class="btn btn-outline-success  ">like</button>
+                        <button class="btn btn-outline-primary  ">like</button>
 
                     </div>
                     {% else %}

@@ -7,15 +7,15 @@ from .models import Image, Profile
 class ImageTestclass(TestCase):
     #setup method
     def setUp(self):
-        self.myimage=Image(image='image',name='Patrick',caption='Nice',comments='nice pic')
+        self.image=Image(image='image',name='Patrick',caption='Nice',comments='nice pic')
 
      #Testing Instance
     def test_instance(self):
-        self.assertTrue(isinstance(self.myimage,Image))
+        self.assertTrue(isinstance(self.image,Image))
     
     #save method
     def test_save_images(self):
-        self.myimage.save_image()
+        self.image.save_image()
         images=Image.objects.all()
         self.assertTrue(len(images)>0)
 
@@ -27,9 +27,9 @@ class ImageTestclass(TestCase):
 
     #delete method
     def test_delete_images(self):
-        self.myimage.save_image()
+        self.image.save_image()
         images_record=Image.objects.all()
-        self.myimage.delete_image()
+        self.image.delete_image()
         self.assertTrue(len(images_record)==0)
 
 class ProfileTestclass(TestCase):
