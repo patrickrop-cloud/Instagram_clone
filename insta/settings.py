@@ -22,12 +22,7 @@ SECRET_KEY = '_5$3c5+w_&b3lk=6o6*$lka@0*h-zy5b5+4&1ipiw!ltmmb1xe'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 ALLOWED_HOSTS = [
-    '*',
-   'http://the-yogify.herokuapp.com/',
-   'https://the-yogify.herokuapp.com/',
-   'the-yogify.herokuapp.com',
-   'the-yogify.herokuapp.com/',
-   '127.0.0.1',
+   'instagram100.herokuapp.com'
 ]
 # Application definition
 INSTALLED_APPS = [
