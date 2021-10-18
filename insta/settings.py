@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '_5$3c5+w_&b3lk=6o6*$lka@0*h-zy5b5+4&1ipiw!ltmmb1xe'
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 ALLOWED_HOSTS = [
     '0.0.0.0'
     'the-yogify.herokuapp.com',
